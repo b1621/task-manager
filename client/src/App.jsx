@@ -8,7 +8,8 @@ import NotFound from "./pages/NotFound";
 function App() {
   return (
     <>
-      <div>
+      {/* <div className="font-fontBarlowb"> */}
+      <div className="">
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home />} />
