@@ -5,6 +5,7 @@ import Button from "../components/Button";
 import TableLayout from "../components/Table/TableLayout";
 import TableRow from "../components/Table/TableRow";
 import TableData from "../components/Table/TableData";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   const [searchValue, setSearchValue] = useState("");
@@ -81,7 +82,9 @@ const Home = () => {
                   <TableData>{group.status}</TableData>
                   <TableData>{group.startDate}</TableData>
                   <TableData>
-                    <Button>Open</Button>
+                    <Link to={`/group/${group.id}`}>
+                      <Button>Open</Button>
+                    </Link>
                   </TableData>
                 </TableRow>
                 // </div>

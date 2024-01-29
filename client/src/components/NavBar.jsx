@@ -1,12 +1,15 @@
 import React from "react";
 import { IoNotificationsOutline } from "react-icons/io5";
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
   return (
     <div className="border-b">
       <div className="container mx-auto flex justify-between py-3">
         <div>
-          <span className="font-semibold text-sky-600">Task</span>Manager
+          <Link to="/">
+            <span className="font-semibold text-sky-600">Task</span>Manager
+          </Link>
         </div>
         <div className="flex items-center space-x-5">
           <p>
