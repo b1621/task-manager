@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import NavBar from "../components/NavBar";
 import SearchBar from "../components/SearchBar";
 import Button from "../components/Button";
+import TableLayout from "../components/Table/TableLayout";
 
 const Home = () => {
   const [searchValue, setSearchValue] = useState("");
@@ -31,6 +32,17 @@ const Home = () => {
               <Button>+ Create</Button>
               <Button>+ Join </Button>
             </div>
+          </div>
+          <div>
+            <TableLayout
+              headerList={[
+                "Task Group",
+                "Description",
+                "Status",
+                "Start Date",
+                "Action",
+              ]}
+            ></TableLayout>
           </div>
         </div>
       </div>
