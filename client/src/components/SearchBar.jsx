@@ -11,6 +11,7 @@ const SearchBar = ({ handleChange, searchValue, cancelSearch }) => {
             htmlFor="search"
             size={22}
             className="absolute left-2 top-2 z-30 text-slate-600"
+            green
           />
         </label>
         <input
@@ -19,7 +20,7 @@ const SearchBar = ({ handleChange, searchValue, cancelSearch }) => {
           onChange={handleChange}
           value={searchValue}
           placeholder="Search  ..."
-          className="absolute h-full w-full rounded-md border border-slate-300 px-10 outline-none transition-all duration-300 placeholder:text-sm placeholder:text-slate-700 focus:border-green-500"
+          className="absolute h-full w-full rounded-md border border-slate-300 px-10 text-sm outline-none transition-all duration-300 placeholder:text-sm placeholder:text-slate-700 focus:border-sky-400"
         />
         <IoCloseOutline
           size={22}

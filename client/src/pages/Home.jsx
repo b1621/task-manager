@@ -18,19 +18,22 @@ const Home = () => {
   };
   const taskGroups = [
     {
+      id: "12",
       taskGroup: "backend",
       descritpion: "some descritpion",
       status: "active",
       startDate: "February 5, 2023",
     },
     {
-      taskGroup: "backend",
+      id: "111",
+      taskGroup: "Frontend",
       descritpion: "some descritpion",
       status: "active",
       startDate: "February 5, 2023",
     },
     {
-      taskGroup: "backend",
+      id: "13",
+      taskGroup: "management",
       descritpion: "some descritpion",
       status: "active",
       startDate: "February 5, 2023",
