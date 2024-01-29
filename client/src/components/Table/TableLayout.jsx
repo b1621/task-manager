@@ -15,7 +15,6 @@ const TableLayout = ({ children, headerList }) => {
                 </span>
               </th>
             ))}
-            "
           </tr>
         </thead>{" "}
         <tbody>{children}</tbody>
