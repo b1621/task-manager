@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "../components/Button";
 import TableLayout from "../components/Table/TableLayout";
 import TableRow from "../components/Table/TableRow";
 import TableData from "../components/Table/TableData";
 import { CiMenuKebab } from "react-icons/ci";
 import { FaCircle } from "react-icons/fa";
+import AddTask from "../components/AddTask";
 
 const Tasks = () => {
   const tasks = [
@@ -33,9 +34,14 @@ const Tasks = () => {
       priority: "urgent",
     },
   ];
+  const [viewAddTask, setViewAddTask] = useState(false);
+
+  const handleAddTask = () => {
+    setViewAddTask(!viewAddTask);
+  };
   return (
     <div>
-      {" "}
+      {viewAddTask && <AddTask />}{" "}
       <div className="min-h-screen border bg-gray-100">
         <div className="container mx-auto my-5 bg-white p-6">
           <div className="flex items-center justify-between pb-4">
@@ -43,7 +49,7 @@ const Tasks = () => {
               <h2>Task Group</h2>
             </div>
             <div className="flex space-x-4">
-              <Button>+ Add Task</Button>
+              <Button handleClick={handleAddTask}>+ Add Task</Button>
             </div>
           </div>
           <div className="my-6">
