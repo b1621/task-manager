@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import TaskGroup from "./pages/TaskGroup";
 import Layout from "./pages/Layout";
 import NotFound from "./pages/NotFound";
+import Tasks from "./pages/Tasks";
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
               <Route path="" element={<TaskGroup />} />
               <Route path="team" element={"team"} />
               <Route path="chat" element={"chat"} />
-              <Route path="task" element={"task"} />
+              <Route path="task" element={<Tasks />} />
               <Route path="report" element={"report"} />
               <Route path="setting" element={"setting"} />
             </Route>
