@@ -4,11 +4,11 @@ import { IoMdClose } from "react-icons/io";
 import Input from "./Input";
 import Select from "./Select";
 import Button from "./Button";
+import { IoAdd } from "react-icons/io5";
+import { format } from "date-fns";
 
-const AddTask = () => {
+const AddTask = ({ handleCloseAddTask }) => {
   const [currentTime, setCurrentTime] = useState(new Date());
-  const [task, setTask] = useState("");
-
   useEffect(() => {
     const intervalId = setInterval(() => {
       setCurrentTime(new Date());
@@ -18,21 +18,19 @@ const AddTask = () => {
     return () => clearInterval(intervalId);
   }, []); // Empty dependency array ensures that the effect runs only once on mount
 
-  const formattedTime = currentTime.toLocaleTimeString();
-  const [textInput, setTextInput] = useState("");
-  const [selectedOption, setSelectedOption] = useState("");
+  const formattedTime = format(currentTime, "HH:mm:ss");
 
-  const options = [
-    { value: "option1", label: "Option 1" },
-    { value: "option2", label: "Option 2" },
-    { value: "option3", label: "Option 3" },
-  ];
+  const [task, setTask] = useState("");
+  const [date, setDate] = useState(format(new Date(), "yyyy-MM-dd"));
+  const [time, setTime] = useState(formattedTime);
+  const [priority, setPriority] = useState("");
+  const [assigne, setAssigne] = useState("");
 
   return (
     <Popup>
       <div className="px-10 py-5">
         <div className="flex justify-end">
-          <button>
+          <button onClick={handleCloseAddTask}>
             <IoMdClose size={23} />
           </button>
         </div>
@@ -50,35 +48,42 @@ const AddTask = () => {
           <div className="flex justify-between space-x-7">
             <Input
               labelName={"Due Date"}
-              value={task}
+              value={date}
               inputType={"date"}
-              setValue={setTask}
+              setValue={setDate}
               // placeholder={"task name"}
             />
             <Input
               labelName={" Time"}
               inputType={"time"}
-              value={task}
-              setValue={setTask}
+              value={time}
+              setValue={setTime}
               // placeholder={"task name"}
             />
           </div>
           <div className="flex space-x-7">
             <Select
-              options={options}
-              selectedValue={selectedOption}
-              setSelectedValue={setSelectedOption}
-              labelName="Select Option"
+              options={[
+                { value: "todo", label: "To-Do" },
+                { value: "inprogress", label: "In-Progress" },
+                { value: "done", label: "Done" },
+              ]}
+              selectedValue={priority}
+              setSelectedValue={setPriority}
+              labelName="Task Priority"
             />
             <Select
-              options={options}
-              selectedValue={selectedOption}
-              setSelectedValue={setSelectedOption}
-              labelName="Select Option"
+              options={[
+                { value: "kal", label: "Kal" },
+                { value: "tom", label: "Tom" },
+              ]}
+              selectedValue={assigne}
+              setSelectedValue={setAssigne}
+              labelName="Task Assigne"
             />
           </div>
-          <div className="flex justify-center">
-            <Button> Add Task </Button>
+          <div className="flex justify-center pt-5">
+            <Button> + Add Task </Button>
           </div>
         </div>
       </div>

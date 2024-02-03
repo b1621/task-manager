@@ -37,11 +37,15 @@ const Tasks = () => {
   const [viewAddTask, setViewAddTask] = useState(false);
 
   const handleAddTask = () => {
-    setViewAddTask(!viewAddTask);
+    setViewAddTask(true);
+  };
+
+  const handleCloseAddTask = () => {
+    setViewAddTask(false);
   };
   return (
     <div>
-      {viewAddTask && <AddTask />}{" "}
+      {viewAddTask && <AddTask handleCloseAddTask={handleCloseAddTask} />}{" "}
       <div className="min-h-screen border bg-gray-100">
         <div className="container mx-auto my-5 bg-white p-6">
           <div className="flex items-center justify-between pb-4">
