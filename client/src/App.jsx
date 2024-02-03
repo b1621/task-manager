@@ -15,6 +15,11 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/group/:groupId" element={<Layout />}>
               <Route path="" element={<TaskGroup />} />
+              <Route path="team" element={"team"} />
+              <Route path="chat" element={"chat"} />
+              <Route path="task" element={"task"} />
+              <Route path="report" element={"report"} />
+              <Route path="setting" element={"setting"} />
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>
