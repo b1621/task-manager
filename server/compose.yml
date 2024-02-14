@@ -1,0 +1,39 @@
+version: '3'
+services:
+  postgres:
+    image: 'postgres:latest'
+    container_name: $PG_HOST
+    environment:
+      POSTGRES_USER: $PG_USER
+      POSTGRES_PASSWORD: $PG_PASSWORD
+      POSTGRES_DB: $PG_DATABASE
+    ports:
+      - '5432:5432'
+    attach: false
+  api:
+    image: cosmtrek/air
+    container_name: api-skeleton
+    working_dir: /project
+    ports:
+      - '$HTTP_PORT:$HTTP_PORT'
+    volumes:
+      - ./:/project
+    depends_on:
+      postgres:
+        condition: service_started
+        restart: true
+    stdin_open: true
+    tty: true
+    profiles:
+      - integrate
+  test:
+    image: golang
+    container_name: api-test
+    working_dir: /project
+    command:
+      - go
+      - test
+    volumes:
+      - ./:/project
+    profiles:
+      - test
