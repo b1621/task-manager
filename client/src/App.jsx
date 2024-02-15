@@ -5,6 +5,7 @@ import TaskGroup from "./pages/TaskGroup";
 import Layout from "./pages/Layout";
 import NotFound from "./pages/NotFound";
 import Tasks from "./pages/Tasks";
+import LoginPage from "./pages/LoginPage";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/login" element={<LoginPage />} />
             <Route path="/group/:groupId" element={<Layout />}>
               <Route path="" element={<TaskGroup />} />
               <Route path="team" element={"team"} />
