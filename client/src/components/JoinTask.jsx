@@ -5,42 +5,30 @@ import { format } from "date-fns";
 import Input from "./Input";
 import Button from "./Button";
 
-const AddTaskGroup = ({ handleCloseAddTaskGroup }) => {
-  //   const currentDate = format(format(new Date()), "yyyy-MM-dd");
+const JoinTask = ({ handleCloseJoinGroup }) => {
   return (
     <Popup>
       <div className="px-10 py-5">
         <div className="flex justify-end">
-          <button onClick={handleCloseAddTaskGroup}>
+          <button onClick={handleCloseJoinGroup}>
             <IoMdClose size={23} className="" />
           </button>
         </div>
         <div className="my-3 flex items-center justify-between">
-          <h2 className="text-3xl">Add Task Group</h2>
+          <h2 className="text-3xl">Join Task Group</h2>
           <p className="text-slate-500">Today 20/05/2024 </p>
         </div>
         <div className="mb-3 mt-7 space-y-3">
           <Input
-            labelName={"Name the task group"}
+            labelName={"Task Group Name"}
             //   value={date}
             //   inputType={"date"}
             //   setValue={setDate}
             // placeholder={"task name"}
           />
-          <div>
-            <label className="text-slate-800" for="description">
-              Description
-            </label>
-            <textarea
-              className="mt-1 w-full rounded-md border border-slate-400 p-5 outline-none"
-              id="description"
-              name="description"
-              rows="4"
-              cols="50"
-            ></textarea>
-          </div>
+
           <Input
-            labelName={"Join Code"}
+            labelName={"Joining Code"}
             //   value={date}
             //   inputType={"date"}
             //   setValue={setDate}
@@ -55,4 +43,4 @@ const AddTaskGroup = ({ handleCloseAddTaskGroup }) => {
   );
 };
 
-export default AddTaskGroup;
+export default JoinTask;

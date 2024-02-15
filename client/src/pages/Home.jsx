@@ -7,6 +7,7 @@ import TableRow from "../components/Table/TableRow";
 import TableData from "../components/Table/TableData";
 import { Link } from "react-router-dom";
 import AddTaskGroup from "../components/AddTaskGroup";
+import JoinTask from "../components/JoinTask";
 
 const taskGroups = [
   {
@@ -33,6 +34,7 @@ const taskGroups = [
 ];
 const Home = () => {
   const [viewAddTaskGroup, setViewAddTaskGroup] = useState(false);
+  const [viewJoinGroup, setViewJoinGroup] = useState(false);
   const [searchValue, setSearchValue] = useState("");
 
   const handleChange = (e) => {
@@ -48,11 +50,20 @@ const Home = () => {
   const handleCloseAddTaskGroup = () => {
     setViewAddTaskGroup(false);
   };
+  const handleJoinGroup = () => {
+    setViewJoinGroup(true);
+  };
+  const handleCloseJoinGroup = () => {
+    setViewJoinGroup(false);
+  };
   return (
     <div>
       <NavBar />
       {viewAddTaskGroup && (
         <AddTaskGroup handleCloseAddTaskGroup={handleCloseAddTaskGroup} />
+      )}{" "}
+      {viewJoinGroup && (
+        <JoinTask handleCloseJoinGroup={handleCloseJoinGroup} />
       )}{" "}
       <div className="min-h-screen border bg-gray-100">
         <div className="container mx-auto my-5 bg-white p-6">
@@ -67,7 +78,7 @@ const Home = () => {
                 cancelSearch={cancelSearch}
               />
               <Button handleClick={handleAddTaskGroup}>+ Create</Button>
-              <Button>+ Join </Button>
+              <Button handleClick={handleJoinGroup}>+ Join </Button>
             </div>
           </div>
           <div className="my-6">
