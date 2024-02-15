@@ -7,33 +7,33 @@ import { CiMenuKebab } from "react-icons/ci";
 import { FaCircle } from "react-icons/fa";
 import AddTask from "../components/AddTask";
 
+const tasks = [
+  {
+    id: 1,
+    task: "backend",
+    duedate: "jan 28, 2023",
+    assignee: "kal",
+    status: "done",
+    priority: "urgent",
+  },
+  {
+    id: 2,
+    task: "api",
+    duedate: "feb 08, 2023",
+    assignee: "kal",
+    status: "inprogress",
+    priority: "urgent",
+  },
+  {
+    id: 3,
+    task: "database",
+    duedate: "jan 28, 2023",
+    assignee: "kal",
+    status: "todo",
+    priority: "urgent",
+  },
+];
 const Tasks = () => {
-  const tasks = [
-    {
-      id: 1,
-      task: "backend",
-      duedate: "jan 28, 2023",
-      assignee: "kal",
-      status: "done",
-      priority: "urgent",
-    },
-    {
-      id: 2,
-      task: "api",
-      duedate: "feb 08, 2023",
-      assignee: "kal",
-      status: "inprogress",
-      priority: "urgent",
-    },
-    {
-      id: 3,
-      task: "database",
-      duedate: "jan 28, 2023",
-      assignee: "kal",
-      status: "todo",
-      priority: "urgent",
-    },
-  ];
   const [viewAddTask, setViewAddTask] = useState(false);
 
   const handleAddTask = () => {
@@ -50,7 +50,7 @@ const Tasks = () => {
         <div className="container mx-auto my-5 bg-white p-6">
           <div className="flex items-center justify-between pb-4">
             <div>
-              <h2>Task Group</h2>
+              <h2>Tasks</h2>
             </div>
             <div className="flex space-x-4">
               <Button handleClick={handleAddTask}>+ Add Task</Button>

@@ -10,7 +10,7 @@ const SearchBar = ({ handleChange, searchValue, cancelSearch }) => {
           <IoIosSearch
             htmlFor="search"
             size={22}
-            className="absolute left-2 top-2 z-30 text-slate-600"
+            className="absolute left-2 top-2 z-20 text-slate-600"
             green
           />
         </label>
@@ -25,7 +25,7 @@ const SearchBar = ({ handleChange, searchValue, cancelSearch }) => {
         <IoCloseOutline
           size={22}
           onClick={cancelSearch}
-          className="absolute right-2 top-2 z-30 cursor-pointer hover:scale-105 hover:text-black"
+          className="absolute right-2 top-2 z-20 cursor-pointer hover:scale-105 hover:text-black"
         />
       </div>
     </>

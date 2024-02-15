@@ -6,8 +6,33 @@ import TableLayout from "../components/Table/TableLayout";
 import TableRow from "../components/Table/TableRow";
 import TableData from "../components/Table/TableData";
 import { Link } from "react-router-dom";
+import AddTaskGroup from "../components/AddTaskGroup";
 
+const taskGroups = [
+  {
+    id: "12",
+    taskGroup: "backend",
+    descritpion: "some descritpion",
+    status: "active",
+    startDate: "February 5, 2023",
+  },
+  {
+    id: "111",
+    taskGroup: "Frontend",
+    descritpion: "some descritpion",
+    status: "active",
+    startDate: "February 5, 2023",
+  },
+  {
+    id: "13",
+    taskGroup: "management",
+    descritpion: "some descritpion",
+    status: "active",
+    startDate: "February 5, 2023",
+  },
+];
 const Home = () => {
+  const [viewAddTaskGroup, setViewAddTaskGroup] = useState(false);
   const [searchValue, setSearchValue] = useState("");
 
   const handleChange = (e) => {
@@ -17,32 +42,18 @@ const Home = () => {
   const cancelSearch = (e) => {
     setSearchValue("");
   };
-  const taskGroups = [
-    {
-      id: "12",
-      taskGroup: "backend",
-      descritpion: "some descritpion",
-      status: "active",
-      startDate: "February 5, 2023",
-    },
-    {
-      id: "111",
-      taskGroup: "Frontend",
-      descritpion: "some descritpion",
-      status: "active",
-      startDate: "February 5, 2023",
-    },
-    {
-      id: "13",
-      taskGroup: "management",
-      descritpion: "some descritpion",
-      status: "active",
-      startDate: "February 5, 2023",
-    },
-  ];
+  const handleAddTaskGroup = () => {
+    setViewAddTaskGroup(true);
+  };
+  const handleCloseAddTaskGroup = () => {
+    setViewAddTaskGroup(false);
+  };
   return (
     <div>
       <NavBar />
+      {viewAddTaskGroup && (
+        <AddTaskGroup handleCloseAddTaskGroup={handleCloseAddTaskGroup} />
+      )}{" "}
       <div className="min-h-screen border bg-gray-100">
         <div className="container mx-auto my-5 bg-white p-6">
           <div className="flex items-center justify-between pb-4">
@@ -55,7 +66,7 @@ const Home = () => {
                 searchValue={searchValue}
                 cancelSearch={cancelSearch}
               />
-              <Button>+ Create</Button>
+              <Button handleClick={handleAddTaskGroup}>+ Create</Button>
               <Button>+ Join </Button>
             </div>
           </div>
