@@ -38,7 +38,7 @@ const LoginPage = () => {
             </div>
             <button className="mb-4 mt-10 w-full rounded-md border bg-primaryColor py-3 text-white hover:bg-blue-600">
               {" "}
-              + Add Task{" "}
+              Login
             </button>
             <div className="text-center">
               Don't have an account ?{" "}
