@@ -4,9 +4,13 @@ import TableLayout from "../components/Table/TableLayout";
 import TableRow from "../components/Table/TableRow";
 import TableData from "../components/Table/TableData";
 import { CiMenuKebab } from "react-icons/ci";
-import { FaCircle, FaDiamond } from "react-icons/fa";
+import { FaCircle } from "react-icons/fa";
+import { FaDiamond } from "react-icons/fa6";
+import { GoDiamond } from "react-icons/go";
+
 import AddTask from "../components/AddTask";
 import { useSelector } from "react-redux";
+import moment from "moment";
 
 const Tasks = () => {
   const [viewAddTask, setViewAddTask] = useState(false);
@@ -45,7 +49,9 @@ const Tasks = () => {
               {tasks.map((task, index) => (
                 <TableRow>
                   <TableData>{task.task}</TableData>
-                  <TableData>{task.duedate}</TableData>
+                  <TableData>
+                    {moment(task.duedate).format("MMMM Do YYYY")}
+                  </TableData>
                   <TableData>{task.assignee}</TableData>
                   <TableData>
                     {" "}
@@ -65,7 +71,9 @@ const Tasks = () => {
                         task.priority
                       )}`}
                     >
-                      <FaDiamond size={7} />
+                      {/* <FaDiamond size={7} /> */}
+                      <GoDiamond size={10} />
+
                       <span>{task.priority}</span>
                     </span>
                   </TableData>
@@ -97,9 +105,9 @@ const getStatusColor = (status) => {
 const getPriorityColor = (priority) => {
   switch (priority) {
     case "urgent":
-      return "text-red-600"; // Adjust the color as needed
+      return "text-pink-600"; // Adjust the color as needed
     case "high":
-      return "text-rose-600"; // Adjust the color as needed
+      return "text-red-500"; // Adjust the color as needed
     case "medium":
       return "text-amber-600"; // Adjust the color as needed
     case "low":

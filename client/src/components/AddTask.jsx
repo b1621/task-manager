@@ -47,6 +47,7 @@ const AddTask = ({ handleCloseAddTask }) => {
       })
     );
     toast.success("task  created successfully ");
+    handleCloseAddTask();
   };
 
   return (
@@ -97,7 +98,7 @@ const AddTask = ({ handleCloseAddTask }) => {
             <Select
               options={[
                 { value: "urgent", label: "Urgent" },
-                { value: "high", label: "Hign" },
+                { value: "high", label: "High" },
                 { value: "medium", label: "Medium" },
                 { value: "low", label: "Low" },
               ]}
