@@ -1,0 +1,446 @@
+definitions:
+  handler.APIError:
+    properties:
+      error:
+        type: string
+    type: object
+  handler.APIMessage:
+    properties:
+      message:
+        type: string
+    type: object
+  model.Role:
+    properties:
+      description:
+        type: string
+      id:
+        description: 'TODO: replace primary key with name'
+        type: integer
+      name:
+        type: string
+    required:
+    - description
+    - name
+    type: object
+  model.User:
+    properties:
+      email:
+        type: string
+      id:
+        type: string
+      isDisabled:
+        type: boolean
+      password:
+        type: string
+      phone:
+        type: string
+      role:
+        $ref: '#/definitions/model.Role'
+      roleID:
+        type: integer
+      username:
+        type: string
+    required:
+    - email
+    - id
+    - username
+    type: object
+  service.AdminPasswordUpdateRequest:
+    properties:
+      new_password:
+        type: string
+      user_id:
+        type: string
+    required:
+    - new_password
+    - user_id
+    type: object
+  service.CreateUserRequest:
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+      phone:
+        type: string
+      username:
+        type: string
+    required:
+    - email
+    - password
+    - username
+    type: object
+  service.DisableUserRequest:
+    properties:
+      disable_user:
+        type: boolean
+      id:
+        type: string
+    required:
+    - disable_user
+    - id
+    type: object
+  service.LoginUserRequest:
+    properties:
+      password:
+        type: string
+      username:
+        type: string
+    required:
+    - password
+    - username
+    type: object
+  service.RoleChangeRequest:
+    properties:
+      new_role_id:
+        type: integer
+      userID:
+        type: string
+    type: object
+info:
+  contact: {}
+paths:
+  /:
+    get:
+      description: Responds with a simple Hello, world message
+      operationId: get-root
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.APIMessage'
+      summary: Root endpoint
+  /change-user-role:
+    post:
+      consumes:
+      - application/json
+      description: Changes the role of a user.
+      operationId: change-user-role
+      parameters:
+      - description: session
+        in: header
+        name: Token
+        required: true
+        type: string
+      - description: Role Change Request
+        in: body
+        name: roleChange
+        required: true
+        schema:
+          $ref: '#/definitions/service.RoleChangeRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.APIMessage'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.APIError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.APIError'
+      summary: Change User Role
+  /disable-account:
+    post:
+      description: Allows a user to disable their own account.
+      operationId: disable-own-account
+      parameters:
+      - description: session
+        in: header
+        name: Token
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.APIMessage'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.APIError'
+      summary: Disable Own Account
+  /disable-or-enable-user-account:
+    post:
+      consumes:
+      - application/json
+      description: Allows an admin to disable or enable a user account.
+      operationId: admin-disable-user-account
+      parameters:
+      - description: Authorization
+        in: header
+        name: AccessToken
+        required: true
+        type: string
+      - description: refreshToken
+        in: header
+        name: RefreshToken
+        required: true
+        type: string
+      - description: Disable User Request
+        in: body
+        name: disableUserRequest
+        required: true
+        schema:
+          $ref: '#/definitions/service.DisableUserRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.APIMessage'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.APIError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.APIError'
+      summary: Admin Disable User Account
+  /login:
+    post:
+      consumes:
+      - application/json
+      description: Logs in a user and returns an access token.
+      operationId: login
+      parameters:
+      - description: Login User Request
+        in: body
+        name: loginUserReq
+        required: true
+        schema:
+          $ref: '#/definitions/service.LoginUserRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.APIMessage'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.APIError'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/handler.APIError'
+      summary: Login
+  /logout:
+    get:
+      description: Logs out a user and clears the access token.
+      operationId: logout
+      parameters:
+      - description: session
+        in: header
+        name: Token
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.APIMessage'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.APIError'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/handler.APIError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.APIError'
+      summary: Logout
+  /reset-password:
+    post:
+      consumes:
+      - application/json
+      description: Allows a user to reset their own password.
+      operationId: update-password
+      parameters:
+      - description: session
+        in: header
+        name: Token
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.APIMessage'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.APIError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.APIError'
+      summary: Update Password
+  /reset-user-password:
+    post:
+      consumes:
+      - application/json
+      description: Allows an admin to reset a user's password.
+      operationId: admin-reset-user-password
+      parameters:
+      - description: session
+        in: header
+        name: Token
+        required: true
+        type: string
+      - description: Target User ID
+        in: path
+        name: user_id
+        required: true
+        type: string
+      - description: Password Reset Request
+        in: body
+        name: passwordResetRequest
+        required: true
+        schema:
+          $ref: '#/definitions/service.AdminPasswordUpdateRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.APIMessage'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.APIError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.APIError'
+      summary: Admin Reset User Password
+  /signup:
+    post:
+      consumes:
+      - application/json
+      description: Signs up a new user
+      operationId: post-signup
+      parameters:
+      - description: Create User Request
+        in: body
+        name: createUserReq
+        required: true
+        schema:
+          $ref: '#/definitions/service.CreateUserRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.APIMessage'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.APIError'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/handler.APIError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.APIError'
+      summary: Signup
+  /update-profile:
+    post:
+      consumes:
+      - application/json
+      description: Updates the profile of the logged-in user.
+      operationId: update-profile
+      parameters:
+      - description: session
+        in: header
+        name: Token
+        required: true
+        type: string
+      - description: Updated User
+        in: body
+        name: updatedUser
+        required: true
+        schema:
+          $ref: '#/definitions/model.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.APIMessage'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.APIError'
+        "403":
+          description: Forbidden
+          schema:
+            $ref: '#/definitions/handler.APIError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.APIError'
+      summary: Update Profile
+  /update-user-profile:
+    post:
+      consumes:
+      - application/json
+      description: Allows admin to update a user's profile.
+      operationId: admin-update-user-profile
+      parameters:
+      - description: session
+        in: header
+        name: Token
+        required: true
+        type: string
+      - description: Target User ID
+        in: path
+        name: user_id
+        required: true
+        type: string
+      - description: Updated User Data
+        in: body
+        name: updatedUser
+        required: true
+        schema:
+          $ref: '#/definitions/model.User'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/handler.APIMessage'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/handler.APIError'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/handler.APIError'
+      summary: Admin Update User Profile
+swagger: "2.0"

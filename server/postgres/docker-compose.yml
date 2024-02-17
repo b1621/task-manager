@@ -1,0 +1,11 @@
+version: '3'
+services:
+  postgres:
+    image: postgres:latest
+    container_name: TM-db
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: Passwordfulness
+      POSTGRES_DB: TM
+    ports:
+      - "5432:5432"

@@ -1,0 +1,11 @@
+1. Sign Up - Testable (Security and Functionality)
+2. Login  - Testable (Security and Functionality)
+3. JWT-Based Access Token (Valid for 10 minutes - Configurable) - Removed (Security)
+4. Session Tokens (Validity Period Configurable - default 8 hours) - Testable (Security)
+5. Role Based Access Control - Testable (Security and Functionality)
+6. Update User Profile(Admin and User) - Testable (Security and Functionality)
+7. Disable User(Admin and User) - Testable (Security and Functionality)
+8. Reset Password(Admin and User)   - Testable (Security and Functionality)
+9. User Change Roles - Testable (Security and Functionality)
+10. Logout - Testable (Security and Functionality)
+11. Database Connection - Configurable
