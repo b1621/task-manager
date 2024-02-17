@@ -7,7 +7,7 @@ const NavBar = () => {
     <div className="border-b">
       <div className="container mx-auto flex justify-between py-3">
         <div>
-          <Link to="/">
+          <Link to="/taskGroup">
             <span className="font-semibold text-sky-600">Task</span>Manager
           </Link>
         </div>

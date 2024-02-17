@@ -1,5 +1,8 @@
-import { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import Home from "./pages/Home";
 import TaskGroup from "./pages/TaskGroup";
 import Layout from "./pages/Layout";
@@ -13,8 +16,10 @@ function App() {
       {/* <div className="font-fontBarlowb"> */}
       <div className="">
         <BrowserRouter>
+          <ToastContainer />
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={"home"} />
+            <Route path="/taskGroup" element={<Home />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/group/:groupId" element={<Layout />}>
               <Route path="" element={<TaskGroup />} />

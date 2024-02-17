@@ -1,16 +1,44 @@
 import React, { useState } from "react";
 import Input from "../components/Input";
 import Button from "../components/Button";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { users } = useSelector((state) => state.user);
+
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    console.log("email ", email);
-    console.log("password ", password);
+    try {
+      if (!email || !password) {
+        toast.error("fill in both email and password");
+        return;
+      }
+
+      // Check if the provided email and password match any user's credentials
+      const user = users.find(
+        (user) => user.email === email && user.password === password
+      );
+
+      if (user) {
+        console.log("login successfull");
+        toast.success("Login Successfully !!");
+        // Redirect to a different page after successful login
+        navigate("/taskGroup");
+      } else {
+        console.log("invalid email or password");
+        toast.error("Invalid email or password");
+      }
+    } catch (error) {
+      console.error("Error:", error.message);
+    }
   };
   return (
     <div className="grid min-h-screen grid-cols-2">
@@ -51,13 +79,13 @@ const LoginPage = () => {
               {" "}
               Login
             </button>
-            <div className="text-center">
+            <Link to={"/register"} className="text-center">
               Don't have an account ?{" "}
               <span className="text-primaryColor hover:text-blue-600">
                 {" "}
                 Sign up here
               </span>
-            </div>
+            </Link>
           </form>
         </div>
       </div>
