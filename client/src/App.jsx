@@ -34,8 +34,22 @@ function App() {
                 </ProtectRoute>
               }
             />
-            <Route path="/profile" element={<Profile />} />
-            <Route path="/group/:groupId" element={<Layout />}>
+            <Route
+              path="/profile"
+              element={
+                <ProtectRoute>
+                  <Profile />{" "}
+                </ProtectRoute>
+              }
+            />
+            <Route
+              path="/group/:groupId"
+              element={
+                <ProtectRoute>
+                  <Layout />{" "}
+                </ProtectRoute>
+              }
+            >
               <Route path="" element={<TaskGroup />} />
               <Route path="team" element={"team"} />
               <Route path="chat" element={"chat"} />

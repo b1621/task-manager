@@ -9,7 +9,7 @@ const initialState = {
       password: "12345",
     },
   ],
-
+  isAuthenticated: false,
   user: {},
 };
 
@@ -22,9 +22,11 @@ const userSlice = createSlice({
     },
     login: (state, action) => {
       state.user = action.payload;
+      state.isAuthenticated = true;
     },
     logout: (state) => {
       state.user = {};
+      state.isAuthenticated = false;
     },
     updateProfile: (state, action) => {
       const { id, name, email, password } = action.payload;

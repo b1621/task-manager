@@ -4,19 +4,19 @@ import { useEffect } from "react";
 import { useSelector } from "react-redux";
 
 const ProtectRoute = ({ children }) => {
-  const { user } = useSelector((state) => state.user);
-  console.log("children", user);
+  const { isAuthenticated } = useSelector((state) => state.user);
+  console.log("children", isAuthenticated);
   const navigate = useNavigate();
 
   useEffect(() => {
     console.log(" user 11 ");
-    if (!user || user == {}) {
+    if (!isAuthenticated) {
       console.log("no user ");
       navigate("/login");
     }
-  }, [navigate, user]);
+  }, [navigate, isAuthenticated]);
 
-  return children;
+  return isAuthenticated ? children : null;
 };
 
 export default ProtectRoute;
