@@ -7,7 +7,7 @@ const Dashboard = () => {
     <div>
       <div className="">
         <div className="m-10 w-[500px] bg-white">
-          <h2 className="pl-5 pt-4 text-2xl">Tasks Priority Chart</h2>
+          <h2 className="pl-5 pt-4 text-2xl">Tasks Priority </h2>
           <TaskPriorityChart />
           <div className="m-5 grid grid-cols-2 gap-4 pb-10">
             <div className="flex items-center space-x-2 text-red-500">

@@ -13,6 +13,7 @@ import Profile from "./pages/Profile";
 import ProtectRoute from "./components/ProtectRoute";
 import Team from "./pages/Team";
 import Dashboard from "./pages/Dashboard";
+import Setting from "./pages/Setting";
 
 function App() {
   return (
@@ -56,7 +57,7 @@ function App() {
               <Route path="chat" element={"chat"} />
               <Route path="task" element={<Tasks />} />
               <Route path="report" element={"report"} />
-              <Route path="setting" element={"setting"} />
+              <Route path="setting" element={<Setting />} />
             </Route>
             {/* </Route> */}
 
