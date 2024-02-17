@@ -4,7 +4,7 @@ import TableLayout from "../components/Table/TableLayout";
 import TableRow from "../components/Table/TableRow";
 import TableData from "../components/Table/TableData";
 import { CiMenuKebab } from "react-icons/ci";
-import { FaCircle } from "react-icons/fa";
+import { FaCircle, FaDiamond } from "react-icons/fa";
 import AddTask from "../components/AddTask";
 import { useSelector } from "react-redux";
 
@@ -58,7 +58,17 @@ const Tasks = () => {
                       <span>{task.status}</span>
                     </span>
                   </TableData>
-                  <TableData>{task.priority}</TableData>
+                  <TableData>
+                    {" "}
+                    <span
+                      className={`flex items-center space-x-1 font-normal ${getPriorityColor(
+                        task.priority
+                      )}`}
+                    >
+                      <FaDiamond size={7} />
+                      <span>{task.priority}</span>
+                    </span>
+                  </TableData>
                   <TableData>
                     <CiMenuKebab size={14} />
                   </TableData>
@@ -79,6 +89,20 @@ const getStatusColor = (status) => {
     case "todo":
       return "text-sky-600"; // Adjust the color as needed
     case "done":
+      return "text-emerald-600"; // Adjust the color as needed
+    default:
+      return "";
+  }
+};
+const getPriorityColor = (priority) => {
+  switch (priority) {
+    case "urgent":
+      return "text-red-600"; // Adjust the color as needed
+    case "high":
+      return "text-rose-600"; // Adjust the color as needed
+    case "medium":
+      return "text-amber-600"; // Adjust the color as needed
+    case "low":
       return "text-emerald-600"; // Adjust the color as needed
     default:
       return "";

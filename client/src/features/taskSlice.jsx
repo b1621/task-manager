@@ -18,7 +18,7 @@ const initialState = {
       duedate: "feb 08, 2023",
       assignee: "kal",
       status: "inprogress",
-      priority: "urgent",
+      priority: "high",
     },
     {
       id: 3,
@@ -27,7 +27,7 @@ const initialState = {
       duedate: "jan 28, 2023",
       assignee: "kal",
       status: "todo",
-      priority: "urgent",
+      priority: "medium",
     },
     {
       id: 5,
@@ -36,7 +36,7 @@ const initialState = {
       duedate: "jan 28, 2023",
       assignee: "kal",
       status: "todo",
-      priority: "urgent",
+      priority: "low",
     },
   ],
 };
