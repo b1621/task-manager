@@ -4,15 +4,17 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
-const LoginPage = () => {
+const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [confPassword, setConfPassword] = useState("");
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { users } = useSelector((state) => state.user);
 
-  const handleLogin = async (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
 
     try {
@@ -46,17 +48,24 @@ const LoginPage = () => {
           {" "}
           <span className="font-semibold">Task</span>Manager
         </h2>
-        <img className="m-auto w-[70%]" src="/Reset password-pana.png" alt="" />
+        <img className="m-auto mt-20 w-[60%]" src="/Sign up-pana.png" alt="" />
       </div>
       <div>
         <div className="mx-auto my-40 w-[50%]">
-          <form onSubmit={handleLogin}>
-            <h2 className="text-center text-4xl font-bold">Account Login</h2>
-            <p className="mt-4 text-xl text-slate-500">
-              If you are already member you can login with your email address
-              and password
+          <form onSubmit={handleRegister}>
+            <h2 className="text-center text-4xl font-bold">Account Signup</h2>
+            <p className="mt-4 text-xl text-slate-400">
+              Become a member and enjoy exclusive promotions
             </p>
             <div className="mt-8 space-y-3">
+              <Input
+                labelName={"Full Name"}
+                id={"name"}
+                value={name}
+                inputType={"text"}
+                setValue={setName}
+                // placeholder={"task name"}
+              />
               <Input
                 labelName={"Email Address"}
                 id={"email"}
@@ -73,16 +82,24 @@ const LoginPage = () => {
                 setValue={setPassword}
                 // placeholder={"task name"}
               />
+              <Input
+                labelName={"Confirm Password"}
+                id={"confPassword"}
+                value={confPassword}
+                inputType={"password"}
+                setValue={setConfPassword}
+                // placeholder={"task name"}
+              />
             </div>
             <button className="mb-4 mt-10 w-full rounded-md border bg-primaryColor py-3 text-white hover:bg-blue-600">
               {" "}
-              Login
+              Signup
             </button>
-            <Link to={"/register"} className="text-center">
+            <Link to={"/login"} className="text-center">
               have an account ?{" "}
               <span className="text-primaryColor hover:text-blue-600">
                 {" "}
-                Sign up here
+                Login here
               </span>
             </Link>
           </form>
@@ -92,4 +109,4 @@ const LoginPage = () => {
   );
 };
 
-export default LoginPage;
+export default Register;
