@@ -39,7 +39,7 @@ const NavBar = () => {
             to={"/profile"}
             className="rounded-full border bg-slate-200 px-4 py-2"
           >
-            {user.name[0].toUpperCase()}
+            {user ? user?.name[0]?.toUpperCase() : ""}
           </Link>
         </div>
       </div>

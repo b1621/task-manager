@@ -11,6 +11,7 @@ import Tasks from "./pages/Tasks";
 import LoginPage from "./pages/LoginPage";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
+import ProtectRoute from "./components/ProtectRoute";
 
 function App() {
   return (
@@ -21,9 +22,18 @@ function App() {
           <ToastContainer />
           <Routes>
             <Route path="/" element={<LoginPage />} />
-            <Route path="/taskGroup" element={<Home />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<Register />} />
+
+            {/* <Route element={<ProtectRoute />}> */}
+            <Route
+              path="/taskGroup"
+              element={
+                <ProtectRoute>
+                  <Home />{" "}
+                </ProtectRoute>
+              }
+            />
             <Route path="/profile" element={<Profile />} />
             <Route path="/group/:groupId" element={<Layout />}>
               <Route path="" element={<TaskGroup />} />
@@ -33,6 +43,8 @@ function App() {
               <Route path="report" element={"report"} />
               <Route path="setting" element={"setting"} />
             </Route>
+            {/* </Route> */}
+
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
