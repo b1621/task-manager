@@ -54,7 +54,7 @@ const Profile = () => {
       <div className="min-h-screen border bg-gray-100">
         <div className="container mx-auto my-5 bg-white p-6">
           <div className="mx-10 flex items-center justify-between pb-4">
-            <h2 className="text-2xl">Profile</h2>
+            <h2 className="text-3xl">Profile</h2>
             <button
               className="rounded-md border px-6 py-1 transition-all duration-300 hover:bg-slate-100"
               onClick={handleLogout}
@@ -63,7 +63,7 @@ const Profile = () => {
             </button>
           </div>
           <form className="mx-auto mb-20 w-[50%]" onSubmit={handleUpdate}>
-            <h2 className="mb-10 text-4xl">Edit Profile</h2>
+            <h2 className="mb-10 text-2xl">Edit Profile</h2>
             <div className="space-y-4">
               <Input labelName={"Full Name"} value={name} setValue={setName} />
               <Input

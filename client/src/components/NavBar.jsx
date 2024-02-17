@@ -1,8 +1,10 @@
 import React from "react";
 import { IoNotificationsOutline } from "react-icons/io5";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 const NavBar = () => {
+  const { user } = useSelector((state) => state.user);
   return (
     <div className="border-b">
       <div className="container mx-auto flex justify-between py-3">
@@ -37,7 +39,7 @@ const NavBar = () => {
             to={"/profile"}
             className="rounded-full border bg-slate-200 px-4 py-2"
           >
-            K
+            {user.name[0].toUpperCase()}
           </Link>
         </div>
       </div>
