@@ -6,36 +6,11 @@ import TableData from "../components/Table/TableData";
 import { CiMenuKebab } from "react-icons/ci";
 import { FaCircle } from "react-icons/fa";
 import AddTask from "../components/AddTask";
+import { useSelector } from "react-redux";
 
-const tasks = [
-  {
-    id: 1,
-    task: "backend",
-    duedate: "jan 28, 2023",
-    assignee: "kal",
-    status: "done",
-    priority: "urgent",
-  },
-  {
-    id: 2,
-    task: "api",
-    duedate: "feb 08, 2023",
-    assignee: "kal",
-    status: "inprogress",
-    priority: "urgent",
-  },
-  {
-    id: 3,
-    task: "database",
-    duedate: "jan 28, 2023",
-    assignee: "kal",
-    status: "todo",
-    priority: "urgent",
-  },
-];
 const Tasks = () => {
   const [viewAddTask, setViewAddTask] = useState(false);
-
+  const { tasks } = useSelector((state) => state.task);
   const handleAddTask = () => {
     setViewAddTask(true);
   };

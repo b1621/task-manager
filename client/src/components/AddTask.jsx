@@ -5,26 +5,49 @@ import Input from "./Input";
 import Select from "./Select";
 import Button from "./Button";
 import { IoAdd } from "react-icons/io5";
-import { format } from "date-fns";
+import { v4 as uuidv4 } from "uuid";
+
+import moment from "moment";
+import { useDispatch } from "react-redux";
+import { addTask } from "../features/taskSlice";
+import { toast } from "react-toastify";
 
 const AddTask = ({ handleCloseAddTask }) => {
-  const [currentTime, setCurrentTime] = useState(new Date());
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      setCurrentTime(new Date());
-    }, 1000); // Update every 1000 milliseconds (1 second)
+  // const formattedTime = moment().format("h:mm:ss");
 
-    // Cleanup the interval when the component unmounts
-    return () => clearInterval(intervalId);
-  }, []); // Empty dependency array ensures that the effect runs only once on mount
-
-  const formattedTime = format(currentTime, "HH:mm:ss");
+  const currentDate = moment().format("MMMM Do YYYY, h:mm:ss a");
 
   const [task, setTask] = useState("");
-  const [date, setDate] = useState(format(new Date(), "yyyy-MM-dd"));
-  const [time, setTime] = useState(formattedTime);
+  const [date, setDate] = useState(moment().format("YYYY-MM-DD"));
+  // const [time, setTime] = useState(formattedTime);
   const [priority, setPriority] = useState("");
-  const [assigne, setAssigne] = useState("");
+  const [status, setStatus] = useState("");
+  const [assignee, setAssignee] = useState("");
+
+  const disptach = useDispatch();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!task || !priority || !status || !assignee) {
+      toast.error("fill all forms");
+      return;
+    }
+
+    const id = uuidv4();
+
+    disptach(
+      addTask({
+        id,
+        task,
+        duedate: date,
+        priority,
+        status,
+        assignee,
+      })
+    );
+    toast.success("task  created successfully ");
+  };
 
   return (
     <Popup>
@@ -36,9 +59,9 @@ const AddTask = ({ handleCloseAddTask }) => {
         </div>
         <div className="my-3 flex items-center justify-between">
           <h2 className="text-3xl">Add Task</h2>
-          <p className="text-slate-500">Today {formattedTime} </p>
+          <p className="text-slate-500"> {currentDate} </p>
         </div>
-        <div className="my-7 space-y-7">
+        <form onSubmit={handleSubmit} className="my-7 space-y-7">
           <Input
             labelName={"Name the Task"}
             value={task}
@@ -53,20 +76,30 @@ const AddTask = ({ handleCloseAddTask }) => {
               setValue={setDate}
               // placeholder={"task name"}
             />
-            <Input
+            {/* <Input
               labelName={" Time"}
               inputType={"time"}
               value={time}
               setValue={setTime}
               // placeholder={"task name"}
+            /> */}
+            <Select
+              options={[
+                { value: "kal", label: "Kal" },
+                { value: "tom", label: "Tom" },
+              ]}
+              selectedValue={assignee}
+              setSelectedValue={setAssignee}
+              labelName="Task Assignee"
             />
           </div>
           <div className="flex space-x-7">
             <Select
               options={[
-                { value: "todo", label: "To-Do" },
-                { value: "inprogress", label: "In-Progress" },
-                { value: "done", label: "Done" },
+                { value: "urgent", label: "Urgent" },
+                { value: "high", label: "Hign" },
+                { value: "medium", label: "Medium" },
+                { value: "low", label: "Low" },
               ]}
               selectedValue={priority}
               setSelectedValue={setPriority}
@@ -74,18 +107,19 @@ const AddTask = ({ handleCloseAddTask }) => {
             />
             <Select
               options={[
-                { value: "kal", label: "Kal" },
-                { value: "tom", label: "Tom" },
+                { value: "todo", label: "To-Do" },
+                { value: "inprogress", label: "In-Progress" },
+                { value: "done", label: "Done" },
               ]}
-              selectedValue={assigne}
-              setSelectedValue={setAssigne}
-              labelName="Task Assigne"
+              selectedValue={status}
+              setSelectedValue={setStatus}
+              labelName="Task Status"
             />
           </div>
           <div className="flex justify-center pt-5">
             <Button> + Add Task </Button>
           </div>
-        </div>
+        </form>
       </div>
     </Popup>
   );

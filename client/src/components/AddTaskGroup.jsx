@@ -7,7 +7,8 @@ import Button from "./Button";
 
 import { useDispatch } from "react-redux";
 import { addTaskGroup } from "../features/taskGroupSlice";
-import { v4 as uuidv4 } from "uuid"; // Import the uuid library
+import { v4 as uuidv4 } from "uuid";
+import { toast } from "react-toastify";
 const AddTaskGroup = ({ handleCloseAddTaskGroup }) => {
   //   const currentDate = format(format(new Date()), "yyyy-MM-dd");
   const [groupName, setGroupName] = useState("");
@@ -37,6 +38,7 @@ const AddTaskGroup = ({ handleCloseAddTaskGroup }) => {
       })
     );
 
+    toast.success("task group created ");
     handleCloseAddTaskGroup();
   };
   return (
