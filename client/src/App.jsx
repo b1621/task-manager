@@ -4,7 +4,6 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import Home from "./pages/Home";
-import TaskGroup from "./pages/TaskGroup";
 import Layout from "./pages/Layout";
 import NotFound from "./pages/NotFound";
 import Tasks from "./pages/Tasks";
@@ -13,6 +12,7 @@ import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import ProtectRoute from "./components/ProtectRoute";
 import Team from "./pages/Team";
+import Dashboard from "./pages/Dashboard";
 
 function App() {
   return (
@@ -51,7 +51,7 @@ function App() {
                 </ProtectRoute>
               }
             >
-              <Route path="" element={<TaskGroup />} />
+              <Route path="" element={<Dashboard />} />
               <Route path="team" element={<Team />} />
               <Route path="chat" element={"chat"} />
               <Route path="task" element={<Tasks />} />
