@@ -27,7 +27,7 @@ const initialState = {
 };
 
 const taskGroupSlice = createSlice({
-  name: taskGroup,
+  name: "taskGroup",
   initialState,
   reducers: {
     addTaskGroup: (state, action) => {

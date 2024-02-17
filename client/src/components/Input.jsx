@@ -1,14 +1,14 @@
 import React from "react";
 
-const Input = ({ inputType, value, placeholder, setValue, labelName }) => {
+const Input = ({ inputType, value, placeholder, setValue, labelName, id }) => {
   return (
     <div className="w-full">
-      <label className="mb-1 block text-slate-900" htmlFor={value}>
+      <label className="mb-1 block text-slate-900" htmlFor={id}>
         {labelName}
       </label>
       <input
         type={`${inputType ? inputType : "text"}`}
-        id={value}
+        id={id}
         placeholder={`${placeholder ? placeholder : ""}`}
         value={value}
         onChange={(e) => setValue(e.target.value)}

@@ -1,8 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import Input from "../components/Input";
 import Button from "../components/Button";
 
 const LoginPage = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLogin = async (e) => {
+    e.preventDefault();
+
+    console.log("email ", email);
+    console.log("password ", password);
+  };
   return (
     <div className="grid min-h-screen grid-cols-2">
       <div className="bg-primaryColor">
@@ -14,7 +23,7 @@ const LoginPage = () => {
       </div>
       <div>
         <div className="mx-auto my-40 w-[50%]">
-          <form>
+          <form onSubmit={handleLogin}>
             <h2 className="text-center text-4xl font-bold">Account Login</h2>
             <p className="mt-4 text-slate-600">
               If you are already member you can login with your email address
@@ -23,16 +32,18 @@ const LoginPage = () => {
             <div className="mt-8 space-y-3">
               <Input
                 labelName={"Email Address"}
-                //   value={date}
+                id={"email"}
+                value={email}
                 inputType={"email"}
-                //   setValue={setDate}
+                setValue={setEmail}
                 // placeholder={"task name"}
               />
               <Input
                 labelName={"Password"}
-                //   value={date}
+                id={"password"}
+                value={password}
                 inputType={"password"}
-                //   setValue={setDate}
+                setValue={setPassword}
                 // placeholder={"task name"}
               />
             </div>
