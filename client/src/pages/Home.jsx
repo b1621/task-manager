@@ -8,35 +8,14 @@ import TableData from "../components/Table/TableData";
 import { Link } from "react-router-dom";
 import AddTaskGroup from "../components/AddTaskGroup";
 import JoinTask from "../components/JoinTask";
+import { useSelector } from "react-redux";
 
-const taskGroups = [
-  {
-    id: "12",
-    taskGroup: "backend",
-    descritpion: "some descritpion",
-    status: "active",
-    startDate: "February 5, 2023",
-  },
-  {
-    id: "111",
-    taskGroup: "Frontend",
-    descritpion: "some descritpion",
-    status: "active",
-    startDate: "February 5, 2023",
-  },
-  {
-    id: "13",
-    taskGroup: "management",
-    descritpion: "some descritpion",
-    status: "active",
-    startDate: "February 5, 2023",
-  },
-];
 const Home = () => {
   const [viewAddTaskGroup, setViewAddTaskGroup] = useState(false);
   const [viewJoinGroup, setViewJoinGroup] = useState(false);
   const [searchValue, setSearchValue] = useState("");
 
+  const { taskGroups } = useSelector((state) => state.taskGroup);
   const handleChange = (e) => {
     setSearchValue(e.target.value);
   };
@@ -100,7 +79,7 @@ const Home = () => {
                     {" "}
                     <span className="font-semibold"> {group.taskGroup}</span>
                   </TableData>
-                  <TableData>{group.descritpion}</TableData>
+                  <TableData>{group.description}</TableData>
                   <TableData>{group.status}</TableData>
                   <TableData>{group.startDate}</TableData>
                   <TableData>
