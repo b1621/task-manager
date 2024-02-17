@@ -3,6 +3,7 @@ import Input from "../components/Input";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { addusers } from "../features/userSlice";
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -18,25 +19,25 @@ const Register = () => {
     e.preventDefault();
 
     try {
-      if (!email || !password) {
-        toast.error("fill in both email and password");
+      if (!email || !password || !name || !confPassword) {
+        toast.error("fill all inputs");
+        return;
+      }
+
+      if (password.length < 5) {
+        toast.error("Password should be at least 5 characters long");
         return;
       }
 
       // Check if the provided email and password match any user's credentials
-      const user = users.find(
-        (user) => user.email === email && user.password === password
-      );
-
-      if (user) {
-        console.log("login successfull");
-        toast.success("Login Successfully !!");
-        // Redirect to a different page after successful login
-        navigate("/taskGroup");
-      } else {
-        console.log("invalid email or password");
-        toast.error("Invalid email or password");
+      if (password !== confPassword) {
+        toast.error("password doen't match");
+        return;
       }
+
+      dispatch(addusers({ name, email, password }));
+      toast.success("Registered Successfully !!");
+      navigate("/login");
     } catch (error) {
       console.error("Error:", error.message);
     }

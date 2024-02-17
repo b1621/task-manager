@@ -4,6 +4,7 @@ const initialState = {
   users: [
     {
       id: 12,
+      name: "joe doe",
       email: "test@gmail.com",
       password: "12345",
     },
