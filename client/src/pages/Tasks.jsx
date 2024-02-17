@@ -38,7 +38,7 @@ const Tasks = () => {
           <div className="my-6">
             <TableLayout
               headerList={[
-                "Task ",
+                "Task",
                 "Due Date",
                 "Assignee",
                 "Status",

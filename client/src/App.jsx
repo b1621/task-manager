@@ -12,6 +12,7 @@ import LoginPage from "./pages/LoginPage";
 import Register from "./pages/Register";
 import Profile from "./pages/Profile";
 import ProtectRoute from "./components/ProtectRoute";
+import Team from "./pages/Team";
 
 function App() {
   return (
@@ -51,7 +52,7 @@ function App() {
               }
             >
               <Route path="" element={<TaskGroup />} />
-              <Route path="team" element={"team"} />
+              <Route path="team" element={<Team />} />
               <Route path="chat" element={"chat"} />
               <Route path="task" element={<Tasks />} />
               <Route path="report" element={"report"} />

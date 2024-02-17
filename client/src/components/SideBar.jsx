@@ -31,6 +31,18 @@ const SideBar = () => {
           <RxDashboard />
           <p>Dashboard</p>
         </Link>
+
+        <Link
+          to={`/${pathParts[1]}/${pathParts[2]}/task`}
+          className={`${sideButtonStyle} ${
+            currentPath === `/${pathParts[1]}/${pathParts[2]}/task`
+              ? activeLink
+              : ""
+          }`}
+        >
+          <GoTasklist />
+          <p>Task</p>
+        </Link>
         <Link
           to={`/${pathParts[1]}/${pathParts[2]}/team`}
           className={`${sideButtonStyle} ${
@@ -52,17 +64,6 @@ const SideBar = () => {
         >
           <IoChatbubblesOutline />
           <p>Chat</p>
-        </Link>
-        <Link
-          to={`/${pathParts[1]}/${pathParts[2]}/task`}
-          className={`${sideButtonStyle} ${
-            currentPath === `/${pathParts[1]}/${pathParts[2]}/task`
-              ? activeLink
-              : ""
-          }`}
-        >
-          <GoTasklist />
-          <p>Task</p>
         </Link>
         <Link
           to={`/${pathParts[1]}/${pathParts[2]}/report`}

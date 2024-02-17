@@ -64,10 +64,10 @@ const Home = () => {
             <TableLayout
               headerList={[
                 "#",
-                "Task Group",
+                "TaskGroup",
                 "Description",
                 "Status",
-                "Start Date",
+                "StartDate",
                 "Action",
               ]}
             >
