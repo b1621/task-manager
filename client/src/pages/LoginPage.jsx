@@ -3,6 +3,7 @@ import Input from "../components/Input";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { login } from "../features/userSlice";
 
 const LoginPage = () => {
   const [email, setEmail] = useState("");
@@ -30,6 +31,7 @@ const LoginPage = () => {
         console.log("login successfull");
         toast.success("Login Successfully !!");
         // Redirect to a different page after successful login
+        dispatch(login(user));
         navigate("/taskGroup");
       } else {
         console.log("invalid email or password");

@@ -33,7 +33,12 @@ const NavBar = () => {
             </svg>
           </p> */}
 
-          <p className="rounded-full border bg-slate-200 px-4 py-2">K</p>
+          <Link
+            to={"/profile"}
+            className="rounded-full border bg-slate-200 px-4 py-2"
+          >
+            K
+          </Link>
         </div>
       </div>
     </div>

@@ -10,6 +10,7 @@ import NotFound from "./pages/NotFound";
 import Tasks from "./pages/Tasks";
 import LoginPage from "./pages/LoginPage";
 import Register from "./pages/Register";
+import Profile from "./pages/Profile";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route path="/taskGroup" element={<Home />} />
             <Route path="/login" element={<LoginPage />} />
             <Route path="/register" element={<Register />} />
+            <Route path="/profile" element={<Profile />} />
             <Route path="/group/:groupId" element={<Layout />}>
               <Route path="" element={<TaskGroup />} />
               <Route path="team" element={"team"} />

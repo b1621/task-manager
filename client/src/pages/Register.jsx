@@ -3,7 +3,7 @@ import Input from "../components/Input";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import { addusers } from "../features/userSlice";
+import { registerUsers } from "../features/userSlice";
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -35,7 +35,7 @@ const Register = () => {
         return;
       }
 
-      dispatch(addusers({ name, email, password }));
+      dispatch(registerUsers({ name, email, password }));
       toast.success("Registered Successfully !!");
       navigate("/login");
     } catch (error) {

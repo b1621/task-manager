@@ -9,17 +9,22 @@ const initialState = {
       password: "12345",
     },
   ],
+
+  user: {},
 };
 
 const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
-    addusers: (state, action) => {
+    registerUsers: (state, action) => {
       state.users.push(action.payload);
+    },
+    login: (state, action) => {
+      state.user = action.payload;
     },
   },
 });
 
-export const { addusers } = userSlice.actions;
+export const { registerUsers, login } = userSlice.actions;
 export default userSlice.reducer;
